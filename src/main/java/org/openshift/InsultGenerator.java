@@ -2,6 +2,8 @@ package org.openshift;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Random;
 
 public class InsultGenerator {
@@ -16,7 +18,15 @@ public class InsultGenerator {
 		Connection connection = DriverManager.getConnection(databaseURL, username, password);
 		
 		if(connection != null) {
-			return "Connected";
+			String SQL = "SELECT string FROM short_adjective";
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(SQL);
+            String returnStatement = "";
+            while(rs.next()){
+            	returnStatement += rs.getString("string") + " ";
+            }
+            
+			return returnStatement;
 		} else {
 			return "Not Connected";
 		}
