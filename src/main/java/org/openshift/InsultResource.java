@@ -1,7 +1,6 @@
 package org.openshift;
 
 import java.util.HashMap;
-
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
